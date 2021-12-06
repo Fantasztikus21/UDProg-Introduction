@@ -1,16 +1,16 @@
-#include "../../std_lib_facilities.h"
+#include "std_lib_facilities.h"
 
-int main()
-{
-	int a = 0, b = 0;
+int main(){
 	
-	cout << "Please enter 2 integer values!\n";
+	int a = 0, b = 0;
+
+	cout << "Please enter to integer number" << endl;
 	cin >> a >> b;
 
-	if (a < b)
-		cout << "max(" << a << "," << b << ") is " << b << '\n';
+	if ( a < b )
+		cout << "Max(" << a << ',' << b << ") is "<< b << endl;
 	else
-		cout << "max(" << a << "," << b << ") is " << a << '\n';
+		cout << "Max(" << a << ',' << b << ") is "<< a << endl;
 
 	return 0;
 }
