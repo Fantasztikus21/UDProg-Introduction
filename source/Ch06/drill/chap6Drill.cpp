@@ -17,11 +17,11 @@
 
 */
 
-#include "std_lib_facilities.h"
+#include "../../std_lib_facilities.h"
 
 //------------------------------------------------------------------------------
 
-class Token{ //1:c(class)
+class Token{
 public:
     char kind;        // what kind of token
     double value;     // for numbers: a value 
@@ -63,7 +63,7 @@ void Token_stream::putback(Token t)
 
 //------------------------------------------------------------------------------
 
-Token Token_stream::get() //2. Token_stream
+Token get()
 {
     if (full) {       // do we already have a Token ready?
         // remove token from buffer
@@ -112,7 +112,7 @@ double primary()
     {
         double d = expression();
         t = ts.get();
-        if (t.kind != ')') error("')' expected");  //3. " hiányzott
+        if (t.kind != ')') error("')' expected");
             return d;
     }
     case '8':            // we use '8' to represent a number
@@ -135,7 +135,6 @@ double term()
         case '*':
             left *= primary();
             t = ts.get();
-            break; //4. break hiányzott
         case '/':
         {
             double d = primary();
@@ -156,7 +155,7 @@ double term()
 // deal with + and -
 double expression()
 {
-    double left = term(); //5. ) hiányzott     // read and evaluate a Term
+    double left = term(;      // read and evaluate a Term
     Token t = ts.get();        // get the next token from token stream
 
     while (true) {
@@ -166,7 +165,7 @@ double expression()
             t = ts.get();
             break;
         case '-':
-            left -= term(); //6. -   // evaluate Term and subtract
+            left -= term();    // evaluate Term and subtract
             t = ts.get();
             break;
         default:
@@ -181,9 +180,9 @@ double expression()
 int main()
 try
 {
-    cout << "Welcome to our simple calculator." << endl;
-    cout << "Please enter expressions using floating-point numbers." << endl;
-    double val = 0; // 7. double dec
+    cout << "Welcome to our simple calculator. Please enter expressions using floating-point numbers." << endl;
+    cout << "You can use +, -, *, / and = for result, x for close." << endl;
+
     while (cin) {
         Token t = ts.get();
 
